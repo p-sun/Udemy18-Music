@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 psun. All rights reserved.
 //
 //  Plays Music. Allows the user to play, pause, change the volume, and seek to any location in the song.
-//  The bottom left button changes itself from "Play" to "Pause" according to the whether the player is playing or paused.
+//  The bottom left button changes itself from "Play" to "Pause" according to the whether the player is playing or paused. Layout constrained to work in both protrait and landscape.
 
 //  Note: If you're running in the simulator, you'll need an mic enabled in your mac system preferences
 
@@ -88,12 +88,12 @@ class ViewController: UIViewController {
         scrubSlider.value =  Float(player.currentTime / player.duration)
         
         if player.playing {
-            if leftButtonIsOnPause == false{
+            if !leftButtonIsOnPause {
                 leftButtonIsOnPause = true // Change button to pause
                 changeLeftButton()
             }
         } else {
-            if leftButtonIsOnPause == true {
+            if leftButtonIsOnPause {
                 leftButtonIsOnPause = false // Change button to play
                 changeLeftButton()
             }
@@ -107,11 +107,11 @@ class ViewController: UIViewController {
         
         var new_button = UIBarButtonItem()
         
-        if leftButtonIsOnPause == true {    // Change button to Pause
+        if leftButtonIsOnPause {    // Change button to Pause
             
             new_button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Pause, target: self, action: "playPausePressed:")
             
-        } else {                            // Change button to Play
+        } else {                   // Change button to Play
             
             new_button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Play, target: self, action: "playPausePressed:")
             
